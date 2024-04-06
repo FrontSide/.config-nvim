@@ -30,3 +30,27 @@ keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" 
 keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" }) --  go to next tab
 keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) --  go to previous tab
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
+
+-- go debug
+keymap.set("n", "<leader>db", "<cmd> DapToggleBreakpoint <CR>", { desc = "Add breakpoint at line" })
+keymap.set("n", "<leader>dus",
+	function ()
+		local widgets = require('dap.ui.widgets');
+		local sidebar = widgets.sidebar(widgets.scopes);
+		sidebar.open();
+	end,
+	{ desc = "Show scopes" })
+keymap.set("n", "<leader>dgt",
+	function ()
+		require('dap-go').debug_test()
+	end,
+	{ desc = "Debug go test" })
+keymap.set("n", "<leader>dgl",
+	function ()
+		require('dap-go').debug_last()
+	end,
+	{ desc = "Debug last go test" })
+
+-- go test (x-ray/go.nvim)
+keymap.set("n", "<leader>gtf", ":GoTestFile<CR><CR>", {desc = "Run Go Test File"})
+keymap.set("n", "<leader>gta", ":GoTest<CR><CR>", {desc = "Run Go Test All"})
