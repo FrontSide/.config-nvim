@@ -1,4 +1,4 @@
-.config/neovim
+.config/nvim
 ==============
 
 Tested with: 
